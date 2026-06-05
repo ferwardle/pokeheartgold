@@ -256,10 +256,10 @@ void ov44_0222A1FC(UnkStruct_ov44_022319EC *arg0);
 
 s32 ov44_02229FDC(u32);
 void ov44_0222A40C(s32 arg0, UnkStruct_ov44_0222A40C *arg1);
-s32 ov44_0222A4B4(OverlayManager *overlayMananger, s32 *arg1);
-s32 ov44_0222A60C(OverlayManager *overlayManager, s32 *arg1);
+int ov44_0222A4B4(OverlayManager *overlayMananger, int *arg1);
+int ov44_0222A60C(OverlayManager *overlayManager, int *arg1);
 void ov44_0222A68C(UnkStruct_ov44_022319EC *arg0);
-s32 ov44_0222A758(OverlayManager *overlayManager);
+int ov44_0222A758(OverlayManager *overlayManager, int *arg1);
 void ov44_0222A7F8(UnkStruct_ov44_022319EC *arg0);
 void ov44_0222A830(void);
 void ov44_0222A850(BgConfig *arg0);

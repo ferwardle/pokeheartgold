@@ -773,7 +773,7 @@ void ov44_0222A40C(s32 arg0, UnkStruct_ov44_0222A40C *arg1) {
     }
 }
 
-s32 ov44_0222A4B4(OverlayManager *overlayMananger, s32 *arg1) {
+int ov44_0222A4B4(OverlayManager *overlayMananger, int *arg1) {
     switch (*arg1) {
     case 0:
         UnkStruct_ov44_0222A758_args *overlayArgs = OverlayManager_GetArgs(overlayMananger);
@@ -833,7 +833,7 @@ s32 ov44_0222A4B4(OverlayManager *overlayMananger, s32 *arg1) {
     return 0;
 }
 
-s32 ov44_0222A60C(OverlayManager *overlayManager, s32 *arg1) {
+int ov44_0222A60C(OverlayManager *overlayManager, int *arg1) {
     UnkStruct_ov44_022319EC *data = OverlayManager_GetData(overlayManager);
     int r1 = arg1[0];
     switch (r1) {
@@ -895,7 +895,7 @@ void ov44_0222A68C(UnkStruct_ov44_022319EC *arg0) {
     UnloadOverlayByID(FS_OVERLAY_ID(OVY_42));
 }
 
-s32 ov44_0222A758(OverlayManager *overlayManager) {
+int ov44_0222A758(OverlayManager *overlayManager, int *arg1) {
     UnkStruct_ov44_022319EC *data = OverlayManager_GetData(overlayManager);
     ov44_0222A68C(data);
     UnkStruct_ov44_0222A758_args *args = OverlayManager_GetArgs(overlayManager);

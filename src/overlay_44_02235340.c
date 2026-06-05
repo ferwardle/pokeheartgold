@@ -106,7 +106,7 @@ extern u8 ov44_0223689C[];
 
 FS_EXTERN_OVERLAY(OVY_42);
 
-void ov44_02232EA8(OverlayManager *overlayMananger) {
+int ov44_02232EA8(OverlayManager* overlayMananger, int* arg1) {
     UnkStruct_ov44_args *temp_r5 = OverlayManager_GetArgs(overlayMananger);
     HandleLoadOverlay(FS_OVERLAY_ID(OVY_42), OVY_LOAD_ASYNC);
     GF_ASSERT(sub_02039998() == 1);
@@ -128,9 +128,10 @@ void ov44_02232EA8(OverlayManager *overlayMananger) {
     Main_SetVBlankIntrCB((void *)&ov44_0223319C, temp_r0);
     sub_0203A880();
     temp_r0->unk27 = 1;
+    return 1;
 }
 
-s32 ov44_02232F64(OverlayManager *overlayManager, u32 *arg1) {
+int ov44_02232F64(OverlayManager *overlayManager, int *arg1) {
     UnkStruct_ov44_args *temp_r7;
     UnkStruct_ov44_02235340 *temp_r4;
     s32 var_r6;
@@ -188,18 +189,18 @@ s32 ov44_02232F64(OverlayManager *overlayManager, u32 *arg1) {
     return 0;
 }
 
-s32 ov44_022330A8(OverlayManager *arg0) {
+int ov44_022330A8(OverlayManager *overlayMananger, int *arg1) {
     UnkStruct_ov44_02235340 *temp_r4;
 
-    temp_r4 = OverlayManager_GetData(arg0);
-    OverlayManager_GetArgs(arg0);
+    temp_r4 = OverlayManager_GetData(overlayMananger);
+    OverlayManager_GetArgs(overlayMananger);
     Main_SetVBlankIntrCB(0, 0);
     ov44_02234038(temp_r4);
     ov44_02234204(temp_r4);
     ov44_02233F20(temp_r4);
     FreeStructOv44_02235340(temp_r4, HEAP_ID_103);
     GF_DestroyVramTransferManager();
-    OverlayManager_FreeData(arg0);
+    OverlayManager_FreeData(overlayMananger);
     Heap_Destroy(HEAP_ID_104);
     Heap_Destroy(HEAP_ID_103);
     UnloadOverlayByID(FS_OVERLAY_ID(OVY_42));

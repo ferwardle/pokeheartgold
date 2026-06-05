@@ -91,9 +91,9 @@ typedef struct UnkStruct_ov44_02235340 {
 typedef void (*func_type_022341C0)(UnkStruct_ov44_02235340 *arg0, UnkStruct_ov44_022341C0 *arg1);
 typedef s32 (*func_type_02232F64)(UnkStruct_ov44_02235340 *, UnkStruct_ov44_args *, enum HeapID);
 
-void ov44_02232EA8(OverlayManager *overlayMananger);
-s32 ov44_02232F64(OverlayManager *overlayManager, u32 *arg1);
-s32 ov44_022330A8(OverlayManager *arg0);
+int ov44_02232EA8(OverlayManager *overlayMananger, int *arg1);
+int ov44_02232F64(OverlayManager *overlayManager, int *arg1);
+int ov44_022330A8(OverlayManager *overlayMananger, int *arg1);
 void ov44_02233100(UnkStruct_ov44_02235340 *arg0, String *arg1);
 void ov44_02233160(UnkStruct_ov44_02235340 *arg0);
 void ov44_0223317C(UnkStruct_ov44_02235340 *arg0, String *arg1);
