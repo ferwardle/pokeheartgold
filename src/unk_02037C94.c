@@ -70,8 +70,9 @@ void sub_02037C98(SaveData *saveData, s8 arg1) {
     if (_021D4150 == NULL) {
         GF_ASSERT(saveData);
         sub_02034D8C();
-        _021D4150 = Heap_Alloc(HEAP_ID_15, sizeof(UnkStruct_sub_02039C6C));;
-        MI_CpuFill8(_021D4150, 0, sizeof(UnkStruct_sub_02039C6C));
+        _021D4150 = Heap_Alloc(HEAP_ID_15, sizeof(UnkStruct_sub_02039C6C));
+        ;
+        MI_CpuClear8(_021D4150, sizeof(UnkStruct_sub_02039C6C));
         _021D4150->unk44 = 50;
         _021D4150->unk52 = 1;
         _021D4150->unk28 = saveData;
@@ -1183,8 +1184,8 @@ BOOL sub_020393C8(void) {
 void sub_02039418(SaveData *saveData) {
     if (_021D4150 == NULL) {
         Heap_CreateAtEnd(HEAP_ID_3, HEAP_ID_15, 256);
-        _021D4150 = Heap_Alloc(HEAP_ID_15, 104);
-        MI_CpuFill8(_021D4150, 0, 104);
+        _021D4150 = Heap_Alloc(HEAP_ID_15, sizeof(UnkStruct_sub_02039C6C));
+        MI_CpuClear8(_021D4150, sizeof(UnkStruct_sub_02039C6C));
         _021D4150->unk4E = 24;
         _021D4150->unk55 = 1;
         _021D4150->unk28 = saveData;
@@ -1207,8 +1208,8 @@ void sub_020394A0(SaveData *saveData) {
 
     if (_021D4150 == NULL) {
         Heap_CreateAtEnd(HEAP_ID_3, HEAP_ID_15, 256);
-        _021D4150 = Heap_Alloc(HEAP_ID_15, 104);
-        MI_CpuFill8(_021D4150, 0, 104);
+        _021D4150 = Heap_Alloc(HEAP_ID_15, sizeof(UnkStruct_sub_02039C6C));
+        MI_CpuClear8(_021D4150, sizeof(UnkStruct_sub_02039C6C));
         _021D4150->unk4E = 25;
         _021D4150->unk55 = 1;
         _021D4150->unk28 = saveData;
@@ -1230,8 +1231,8 @@ void sub_020394F4(void) {
 void sub_02039528(SaveData *saveData) {
     if (_021D4150 == NULL) {
         Heap_CreateAtEnd(HEAP_ID_3, HEAP_ID_15, 256);
-        _021D4150 = Heap_Alloc(HEAP_ID_15, 104);
-        MI_CpuFill8(_021D4150, 0, 104);
+        _021D4150 = Heap_Alloc(HEAP_ID_15, sizeof(UnkStruct_sub_02039C6C));
+        MI_CpuClear8(_021D4150, sizeof(UnkStruct_sub_02039C6C));
         _021D4150->unk4E = 36;
         _021D4150->unk55 = 1;
         _021D4150->unk28 = saveData;
@@ -1312,7 +1313,7 @@ UnkStruct_ov44_0223197C *sub_020396FC(SaveData *saveData, u32 arg1) {
     Heap_CreateAtEnd(HEAP_ID_3, HEAP_ID_15, 28800);
     sub_02037C98(saveData, 23);
     _021D4150->unk0 = Heap_Alloc(HEAP_ID_15, arg1);
-    MI_CpuFill8(_021D4150->unk0, 0, arg1);
+    MI_CpuClear8(_021D4150->unk0, arg1);
     _021D4150->unk4F = 0;
     _021D4150->unk28 = saveData;
     sub_020381C0(sub_02039694, 0);
@@ -1477,7 +1478,7 @@ void sub_02039A00(void) {
     if (sub_02039918() && (sub_02037700() || sub_020393C8() || sub_020395B0() || _021D4150->unk5D || sub_020397FC()) && !sub_0201A79C() && !sub_020399B8()) {
         Sound_Stop();
         Save_Cancel(_021D4150->unk28);
-        gSystem.touchpadReadAuto = 1;
+        gSystem.touchpadReadAuto = TRUE;
         if (_021D4150->unk5D == 3) {
             sub_020399A4(3);
             return;
