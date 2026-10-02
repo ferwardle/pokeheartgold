@@ -157,7 +157,7 @@ BOOL sub_02078834(TaskManager *taskManager) {
         Heap_Free(temp_r0->overlayArgs0);
         Heap_Free(temp_r0);
         temp_r0->unk4++;
-        return 1;
+        return TRUE;
     case 12:
         sub_020378E4(0);
         temp_r0->overlayArgs1 = sub_020968B0(fieldSystem, NULL);
@@ -227,9 +227,9 @@ BOOL sub_02078834(TaskManager *taskManager) {
         }
         break;
     default:
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 UnkStruct_sub_02078834 *sub_02078B2C(void) {
@@ -337,48 +337,49 @@ void sub_02078D10(void *arg0) {
     UnloadOverlayByID(FS_OVERLAY_ID(OVY_90));
 }
 
-s32 sub_02078D24(s32 arg0) {
-    UnkStruct_ov44_0223197C *tempStruct = sub_020398C8();
-    u8 temp_r2 = tempStruct->unk0.unk1B;
-    u8 temp_r0 = tempStruct->unk24[arg0].unk1B;
+BOOL sub_02078D24(s32 arg0) {
+    UnkStruct_ov44_0223197C *unkStruct = sub_020398C8();
+    u8 temp_r2 = unkStruct->unk0.unk1B;
+    u8 temp_r0 = unkStruct->unk24[arg0].unk1B;
+
     if (temp_r2 == 12 && temp_r0 == 5) {
-        return 1;
+        return TRUE;
     }
     if (temp_r2 == 13 && temp_r0 == 6) {
-        return 1;
+        return TRUE;
     }
     if (temp_r2 == 14 && temp_r0 == 7) {
-        return 1;
+        return TRUE;
     }
     if (temp_r2 == 9 && temp_r0 == 2) {
-        return 1;
+        return TRUE;
     }
     if (temp_r2 == 10 && temp_r0 == 3) {
-        return 1;
+        return TRUE;
     }
     if (temp_r2 == 11 && temp_r0 == 4) {
-        return 1;
+        return TRUE;
     }
     if (temp_r2 == 15 && temp_r0 == 8) {
-        return 1;
+        return TRUE;
     }
-    if (temp_r2 == 19 && temp_r0 == 0x12) {
-        return 1;
+    if (temp_r2 == 19 && temp_r0 == 18) {
+        return TRUE;
     }
-    if (temp_r2 == 21 && temp_r0 == 0x14) {
-        return 1;
+    if (temp_r2 == 21 && temp_r0 == 20) {
+        return TRUE;
     }
-    if (temp_r2 == 23 && temp_r0 == 0x16) {
-        return 1;
+    if (temp_r2 == 23 && temp_r0 == 22) {
+        return TRUE;
     }
-    if (temp_r2 == 25 && temp_r0 == 0x18) {
-        return 1;
+    if (temp_r2 == 25 && temp_r0 == 24) {
+        return TRUE;
     }
-    if (temp_r2 == 0x1B && temp_r0 == 0x1A) {
-        return 1;
+    if (temp_r2 == 27 && temp_r0 == 26) {
+        return TRUE;
     }
-    if (temp_r2 == 0x10 && temp_r0 == 1) {
-        return 1;
+    if (temp_r2 == 16 && temp_r0 == 1) {
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
