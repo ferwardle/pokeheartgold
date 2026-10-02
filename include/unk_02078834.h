@@ -41,6 +41,6 @@ UnkStruct_sub_02078C74* sub_02078C74(FieldSystem* fieldSystem, enum HeapID arg1,
 void sub_02078CB4(void* arg0);
 UnkStruct_sub_02078C18* sub_02078CC8(FieldSystem* fieldSystem, enum HeapID arg1, s32 arg2);
 void sub_02078D10(void* arg0);
-s32 sub_02078D24(s32 arg0);
+BOOL sub_02078D24(s32 arg0);
 
 #endif // POKEHEARTGOLD_UNK_02078834_H

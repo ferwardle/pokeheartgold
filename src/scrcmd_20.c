@@ -7,7 +7,6 @@
 #include "assert.h"
 #include "bag.h"
 #include "field_system.h"
-#include "fieldmap.h"
 #include "frontier_data.h"
 #include "game_stats.h"
 #include "heap.h"
@@ -23,6 +22,7 @@
 #include "save_special_ribbons.h"
 #include "scrcmd.h"
 #include "script.h"
+#include "script_manager.h"
 #include "task.h"
 #include "unk_02030A98.h"
 #include "unk_02035900.h"
@@ -318,7 +318,7 @@ static BOOL sub_0204F2B8(TaskManager *taskManager) {
 
 static u32 sub_0204F320(UnkStruct_0204F284 *a0, FieldSystem *fieldSystem, enum HeapID unused) {
     PartyMenuArgs *partyMenuArgs = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenuArgs));
-    MIi_CpuClearFast(0, (u32 *)partyMenuArgs, sizeof(PartyMenuArgs));
+    MI_CpuClearFast((u32 *)partyMenuArgs, sizeof(PartyMenuArgs));
     partyMenuArgs->party = SaveArray_Party_Get(fieldSystem->saveData);
     partyMenuArgs->bag = Save_Bag_Get(fieldSystem->saveData);
     partyMenuArgs->mailbox = Save_Mailbox_Get(fieldSystem->saveData);
@@ -424,19 +424,19 @@ BOOL ScrCmd_BufferBattleHallStreak(ScriptContext *ctx) {
         Heap_Free(unk0);
     }
     BufferIntegerAsString(*messageFormat, strIdxWinStreak, winStreak, CountDigits(winStreak), PRINTING_MODE_RIGHT_ALIGN, TRUE);
-    u16 bp = 0;
+    u16 battlePoints = 0;
     u32 currWinStreakLevel = 0;
     u16 prevWinStreakLevel = *winStreakLevel;
     for (i = *winStreakLevel; i < NELEMS(battleHallWinStreakBP); i++) {
         if (battleHallWinStreakBP[i].winStreakTarget <= winStreak) {
-            bp += battleHallWinStreakBP[i].bp;
+            battlePoints += battleHallWinStreakBP[i].bp;
             (*winStreakLevel)++;
             currWinStreakLevel = i;
         }
     }
-    GameStats_Add(Save_GameStats_Get(ctx->fieldSystem->saveData), GAME_STAT_BATTLE_POINTS, bp);
-    if (bp != 0) {
-        FrontierData_BattlePointAction(Save_FrontierData_Get(ctx->fieldSystem->saveData), bp, 5);
+    GameStats_Add(Save_GameStats_Get(ctx->fieldSystem->saveData), GAME_STAT_BATTLE_POINTS_RECEIVED, battlePoints);
+    if (battlePoints) {
+        FrontierData_BattlePointAction(Save_FrontierData_Get(ctx->fieldSystem->saveData), battlePoints, 5);
     }
     if (winStreak == 0) {
         *result = 0;
@@ -454,7 +454,7 @@ BOOL ScrCmd_BufferBattleHallStreak(ScriptContext *ctx) {
     u32 currWinStreakTarget = battleHallWinStreakBP[currWinStreakLevel].winStreakTarget;
     BufferIntegerAsString(*messageFormat, strIdxCurrWinStreakTarget, currWinStreakTarget, CountDigits(currWinStreakTarget), PRINTING_MODE_RIGHT_ALIGN, TRUE);
     BufferIntegerAsString(*messageFormat, strIdxNextWinStreakTarget, battleHallWinStreakBP[*winStreakLevel].winStreakTarget, CountDigits(battleHallWinStreakBP[*winStreakLevel].winStreakTarget), PRINTING_MODE_RIGHT_ALIGN, TRUE);
-    BufferIntegerAsString(*messageFormat, strIdxBP, bp, CountDigits(bp), PRINTING_MODE_RIGHT_ALIGN, TRUE);
+    BufferIntegerAsString(*messageFormat, strIdxBP, battlePoints, CountDigits(battlePoints), PRINTING_MODE_RIGHT_ALIGN, TRUE);
     return FALSE;
 }
 

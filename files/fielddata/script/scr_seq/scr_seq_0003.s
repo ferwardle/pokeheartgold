@@ -348,21 +348,21 @@ scr_seq_0003_000:
 	Switch VAR_SPECIAL_RESULT
 	Case 0, _04D6
 	Case 1, _04DD
-	ScrCmd_060 VAR_SPECIAL_RESULT
+	WaitSignpost VAR_SPECIAL_RESULT
 	Switch VAR_SPECIAL_RESULT
 	Case 1, _04DD
-	ScrCmd_057 2
+	SetSignpostAction MAPSIGNCOMMAND_WIPE_OUT
 	RestartCurrentScript
 	End
 
 _04D6:
-	ScrCmd_057 2
+	SetSignpostAction MAPSIGNCOMMAND_WIPE_OUT
 	RestartCurrentScript
 	End
 
 _04DD:
-	ScrCmd_057 4
-	ScrCmd_058
+	SetSignpostAction MAPSIGNCOMMAND_HIDE
+	WaitSignpostAction
 	ScrCmd_061
 	RestartCurrentScript
 	End
@@ -375,14 +375,14 @@ scr_seq_0003_001:
 _04F2:
 	GetItemPocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
 	Switch VAR_SPECIAL_RESULT
-	Case 7, _0574
-	Case 0, _0568
-	Case 4, _0568
-	Case 1, _0568
-	Case 2, _0568
-	Case 6, _0568
-	Case 5, _057A
-	Case 3, _056E
+	Case POCKET_KEY_ITEMS,    _0574
+	Case POCKET_ITEMS,        _0568
+	Case POCKET_BERRIES,      _0568
+	Case POCKET_MEDICINE,     _0568
+	Case POCKET_BALLS,        _0568
+	Case POCKET_BATTLE_ITEMS, _0568
+	Case POCKET_MAIL,         _057A
+	Case POCKET_TMHMS,        _056E
 	End
 
 _0568:
@@ -1507,7 +1507,7 @@ scr_seq_0003_040:
 	Compare VAR_BATTLE_TOWER_PRINT_PROGRESS, 4
 	GoToIfNe _13F6
 	SetFlag FLAG_GOT_ALL_FOUR_FRONTIER_PRINTS
-	AddSpecialGameStat2 31
+	AddSpecialGameStat2 SCORE_EVENT_GOT_ALL_GOLD_PRINTS
 	GoTo _13F6
 	End
 

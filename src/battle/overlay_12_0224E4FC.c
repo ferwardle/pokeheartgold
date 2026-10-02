@@ -6,6 +6,7 @@
 #include "constants/battle.h"
 #include "constants/battle_menu.h"
 #include "constants/battle_subscript.h"
+#include "constants/game_stats.h"
 #include "constants/items.h"
 #include "constants/message_tags.h"
 #include "constants/move_effects.h"
@@ -1741,7 +1742,7 @@ void BattleContext_Init(BattleContext *ctx) {
     ctx->magnitude = 0;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
-        MIi_CpuClearFast(0, (u32 *)&ctx->selfTurnData[battlerId], sizeof(SelfTurnData));
+        MI_CpuClearFast((u32 *)&ctx->selfTurnData[battlerId], sizeof(SelfTurnData));
         ctx->unk_21A4[battlerId] = 6;
     }
 }
@@ -1944,8 +1945,8 @@ void ov12_02251710(BattleSystem *battleSystem, BattleContext *ctx) {
     int battlerId;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
-        MIi_CpuClearFast(0, (u32 *)&ctx->turnData[battlerId], sizeof(TurnData));
-        MIi_CpuClearFast(0, (u32 *)&ctx->moveFail[battlerId], sizeof(MoveFailFlags));
+        MI_CpuClearFast((u32 *)&ctx->turnData[battlerId], sizeof(TurnData));
+        MI_CpuClearFast((u32 *)&ctx->moveFail[battlerId], sizeof(MoveFailFlags));
         ctx->battleMons[battlerId].status2 &= ~STATUS2_FLINCH;
         if (ctx->battleMons[battlerId].unk88.rechargeCount + 1 < ctx->totalTurns) {
             ctx->battleMons[battlerId].status2 &= ~STATUS2_RECHARGE;
@@ -2818,7 +2819,7 @@ BOOL BattleTryRun(BattleSystem *battleSystem, BattleContext *ctx, int battlerId)
             ret = TRUE;
         }
         if (!ret) {
-            BattleController_EmitIncrementGameStat(battleSystem, battlerId, 0, 99);
+            BattleController_EmitIncrementGameStat(battleSystem, battlerId, 0, GAME_STAT_RUN_FAILURES);
         }
         ctx->runAttempts++;
     }

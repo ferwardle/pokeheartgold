@@ -192,7 +192,7 @@ void Bag_LaunchApp(FieldSystem *fieldSystem, BagView *args) {
 BagView *sub_0203E3FC(FieldSystem *fieldSystem, ItemCheckUseData *taskman) {
     BagView *bagView = Bag_CreateView(Save_Bag_Get(fieldSystem->saveData), sAllPockets, HEAP_ID_FIELD2);
     sub_0207789C(bagView, fieldSystem->saveData, 0, fieldSystem->bagCursor, &fieldSystem->menuInputState);
-    sub_020778E8(bagView, fieldSystem->unk70);
+    sub_020778E8(bagView, fieldSystem->mapLoadType);
     if (PlayerAvatar_GetState(fieldSystem->playerAvatar) == PLAYER_STATE_CYCLING) {
         sub_020778C8(bagView);
     }
@@ -627,7 +627,7 @@ ApricornBoxArgs *ApricornBox_LaunchApp(FieldSystem *fieldSystem, int a1) {
     MI_CpuFill8(args, 0, sizeof(ApricornBoxArgs));
     args->saveData = FieldSystem_GetSaveData(fieldSystem);
     args->menuInputStatePtr = &fieldSystem->menuInputState;
-    args->unk10 = GameStats_GetCapped(Save_GameStats_Get(args->saveData), GAME_STAT_UNK0);
+    args->steps = GameStats_GetCapped(Save_GameStats_Get(args->saveData), GAME_STAT_STEPS_WALKED);
     if (a1 == 1 && !CheckFlag997(Save_VarsFlags_Get(fieldSystem->saveData))) {
         args->unk0 = 0;
     } else {
@@ -642,7 +642,7 @@ ApricornBoxArgs *sub_0203ED80(FieldSystem *fieldSystem, u32 a1, u16 *a2) {
     MI_CpuFill8(args, 0, sizeof(ApricornBoxArgs));
     args->saveData = FieldSystem_GetSaveData(fieldSystem);
     args->menuInputStatePtr = &fieldSystem->menuInputState;
-    args->unk10 = GameStats_GetCapped(Save_GameStats_Get(args->saveData), GAME_STAT_UNK0);
+    args->steps = GameStats_GetCapped(Save_GameStats_Get(args->saveData), GAME_STAT_STEPS_WALKED);
     args->unk0 = 3;
     args->unkC = a1;
     args->unk8 = a2;
@@ -976,7 +976,7 @@ static BOOL Task_WirelessTrade(TaskManager *taskman) {
         data->wirelessTradeSelectMon.unk30++;
         data->state = 2;
         GameStats *gameStats = Save_GameStats_Get(fieldSystem->saveData);
-        GameStats_AddScore(gameStats, SCORE_EVENT_16);
+        GameStats_AddScore(gameStats, SCORE_EVENT_LINK_TRADE);
         if (sub_02039998()) {
             GameStats_Inc(gameStats, GAME_STAT_UNK114);
         }
